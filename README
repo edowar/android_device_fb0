@@ -2,10 +2,8 @@ This is a WIP. Currently builds, flashes and boots. Most, but not all, things ar
 
 Here's what is currently working:
 
-- RIL/3G (credits to tickerguy)
-- Rear-facing camera
-- Wifi
-- Sound (credits to tickerguy)
+- RIL/3G  
+- Sound 
 - Touchscreen w/ multitouch
 - 3D Graphics/EGL
 - Bluetooth
@@ -13,11 +11,11 @@ Here's what is currently working:
 - LED/keyboard lights
 - USB mounting
 - Proximity sensor
-- Ambient light sensor (credits to tickerguy)
-- Wired headset (credits to tickerguy)
-- MMS (credits to tickerguy)
-- GPS (credits to tickerguy)
+- Ambient light sensor 
+- Wired headset 
 
 What doesn't work:
-
-- Front-facing camera
+- wifi
+- GPS
+- USB mounting
+- wired headset
