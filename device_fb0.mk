@@ -17,46 +17,32 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel
 
 PRODUCT_PACKAGES += \
-    gralloc.msm7x30 \
-    copybit.msm7x30 \
-    hwcomposer.msm7x30 \
-    audio.primary.msm7x30 \
-    audio_policy.msm7x30 \
-    libaudioutils \
-    libtinyalsa \
-    gps.fb0 \
     lights.fb0 \
-    camera.msm7x30 \
+    gps.fb0
+
+# Camera
+PRODUCT_PACKAGES += \
+    camera.msm7x30
+
+# Audio
+PRODUCT_PACKAGES += \
+    audio.a2dp.default \
+    audio_policy.msm7x30 \
+    audio.primary.msm7x30 \
+    libaudioutils \
+    libtinyalsa
+
+# Video
+PRODUCT_PACKAGES += \
+    copybit.msm7x30 \
+    gralloc.msm7x30 \
+    hwcomposer.msm7x30
+
+# Omx
+PRODUCT_PACKAGES += \
     libOmxCore \
     libOmxVenc \
-    libOmxVdec 
-    
-# Applications
-PRODUCT_PACKAGES += \
-    Camera \
-    Development \
-    FileManager \
-    LatinIME \
-    Mms \
-    Stk \
-    VideoEditor \
-    VoiceDialer \
-    SpareParts \
-    SyncProvider \
-    Torch \
-    Superuser \
-    su
-
-# CyanogenMod Packages
-PRODUCT_PACKAGES += \
-    CMSettings \
-    DSPManager \
-    libcyanogen-dsp 
-
-# Filesystem management tools
-PRODUCT_PACKAGES += \
-    make_ext4fs \
-    setup_fs
+    libOmxVdec
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \
@@ -71,17 +57,45 @@ PRODUCT_PACKAGES += \
     VisualizationWallpapers \
     librs_jni
 
+# Filesystem management tools
+PRODUCT_PACKAGES += \
+    make_ext4fs \
+    setup_fs
 
+# Applications
+PRODUCT_PACKAGES += \
+    Camera \
+    Development \
+    FileManager \
+    LatinIME \
+    Mms \
+    Stk \
+    VideoEditor \
+    VoiceDialer \
+    SpareParts \
+    SyncProvider \
+    Superuser \
+    Superuser.apk \
+    su 
+    
+# CyanogenMod Packages
+PRODUCT_PACKAGES += \
+    CMSettings \
+    DSPManager \
+    libcyanogen-dsp \
+    audio_effects.conf
+       
 # Init files
 PRODUCT_COPY_FILES += \
     device/fih/fb0/init.qcom.rc:root/init.qcom.rc \
+    device/fih/fb0/init.qcom.usb.rc:root/init.qcom.usb.rc \
     device/fih/fb0/ueventd.fb0.rc:root/ueventd.fb0.rc
 
 # init.d task management
 #PRODUCT_COPY_FILES += \
 #    device/fih/fb0/prebuilt/etc/99memory:/system/etc/init.d/99memory \
-#    device/fih/fb0/prebuilt/etc/08hostapd:/system/etc/init.d/08hostapd
-
+#    device/fih/fb0/prebuilt/etc/08hostapd:/system/etc/init.d/08hostapd 
+    
 # Gsensor & Ecompass
 PRODUCT_COPY_FILES += \
     device/fih/fb0/prebuilt/app/ECompassCalibration.apk:/system/app/ECompassCalibration.apk \
@@ -109,14 +123,13 @@ PRODUCT_COPY_FILES += \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
 # init scripts
-PRODUCT_COPY_FILES += \
-    device/fih/fb0/files/etc/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
-    device/fih/fb0/files/etc/init.qcom.coex.sh:/system/etc/init.qcom.coex.sh \
-    device/fih/fb0/files/etc/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh \
-    device/fih/fb0/files/etc/init.qcom.sdio.sf6.sh:/system/etc/init.qcom.sdio.sf6.sh \
-    device/fih/fb0/files/etc/init.qcom.sdio.sh:/system/etc/init.qcom.sdio.sh \
-    device/fih/fb0/files/etc/init.qcom.wifi.sh:/system/etc/init.qcom.wifi.sh \
-    device/fih/fb0/files/etc/gps.conf:/system/etc/gps.conf
+#PRODUCT_COPY_FILES += \
+   device/fih/fb0/files/etc/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
+   device/fih/fb0/files/etc/init.qcom.coex.sh:/system/etc/init.qcom.coex.sh \
+   device/fih/fb0/files/etc/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh \
+   device/fih/fb0/files/etc/init.qcom.sdio.sf6.sh:/system/etc/init.qcom.sdio.sf6.sh \
+   device/fih/fb0/files/etc/init.qcom.sdio.sh:/system/etc/init.qcom.sdio.sh \
+   device/fih/fb0/files/etc/init.qcom.wifi.sh:/system/etc/init.qcom.wifi.sh 
 
 # Keychars
 PRODUCT_COPY_FILES += \
@@ -155,8 +168,8 @@ PRODUCT_COPY_FILES += \
     device/fih/fb0/files/etc/firmware/vidc_720p_mp4_enc_mc.fw:/system/etc/firmware/vidc_720p_mp4_enc_mc.fw \
     device/fih/fb0/files/etc/firmware/vidc_720p_vc1_dec_mc.fw:/system/etc/firmware/vidc_720p_vc1_dec_mc.fw \
     device/fih/fb0/files/etc/firmware/yamato_pfp.fw:/system/etc/firmware/yamato_pfp.fw \
-    device/fih/fb0/files/etc/firmware/yamato_pm4.fw:/system/etc/firmware/yamato_pm4.fw
-
+    device/fih/fb0/files/etc/firmware/yamato_pm4.fw:/system/etc/firmware/yamato_pm4.fw \
+            
 # Wifi and filesystems
 PRODUCT_COPY_FILES += \
     device/fih/fb0/modules/libra.ko:/system/lib/modules/libra.ko \
@@ -173,7 +186,8 @@ PRODUCT_COPY_FILES += \
 
 # GPS
 PRODUCT_COPY_FILES += \
-    device/fih/fb0/files/etc/loc_parameter.ini:system/etc/loc_parameter.ini
+    device/fih/fb0/files/etc/loc_parameter.ini:system/etc/loc_parameter.ini \
+    device/fih/fb0/files/etc/gps.conf:/system/etc/gps.conf
 
 # Audio 
 PRODUCT_COPY_FILES += \
@@ -184,7 +198,7 @@ PRODUCT_COPY_FILES += \
 # Tunnelling
 PRODUCT_COPY_FILES += \
     device/fih/fb0/modules/tun.ko:/system/lib/modules/tun.ko 
-
+         
 # HW init
 PRODUCT_COPY_FILES += \
     device/fih/fb0/files/bin/qmuxd:/system/bin/qmuxd \
@@ -267,12 +281,14 @@ PRODUCT_COPY_FILES += \
     
 # GPS
 PRODUCT_COPY_FILES += \
-    device/fih/fb0/files/etc/loc_parameter.ini:system/etc/loc_parameter.ini
-
+    device/fih/fb0/files/etc/loc_parameter.ini:system/etc/loc_parameter.ini \
+    device/fih/fb0/files/etc/init.qcom.coex.sh:system/etc/init.qcom.coex.sh \
+    device/fih/fb0/files/etc/init.qcom.bt.sh:system/etc/init.qcom.bt.sh 
+    
 # Camera
 PRODUCT_COPY_FILES += \
-    device/fih/fb0/files/lib/libcamera.so:/system/lib/libcamera.so \
     device/fih/fb0/files/lib/libcamera.so:/obj/lib/libcamera.so \
+    device/fih/fb0/files/lib/libcamera.so:/system/lib/libcamera.so \
     device/fih/fb0/files/lib/liboemcamera.so:/system/lib/liboemcamera.so \
     device/fih/fb0/files/lib/libmmjpeg.so:/system/lib/libmmjpeg.so \
     device/fih/fb0/files/lib/libmmipl.so:/system/lib/libmmipl.so
@@ -309,7 +325,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     BUILD_UTC_DATE=0 
     
 # High-density art, but English locale
-PRODUCT_LOCALES += en
+PRODUCT_LOCALES += hdpi
 PRODUCT_AAPT_CONFIG := normal hdpi
 PRODUCT_AAPT_PREF_CONFIG := hdpi
 
