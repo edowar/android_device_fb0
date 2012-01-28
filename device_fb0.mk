@@ -87,8 +87,8 @@ PRODUCT_PACKAGES += \
        
 # Init files
 PRODUCT_COPY_FILES += \
-    device/fih/fb0/init.qcom.rc:root/init.qcom.rc \
-    device/fih/fb0/init.qcom.usb.rc:root/init.qcom.usb.rc \
+    device/fih/fb0/init.qcom.rc:root/init.fb0.rc \
+    device/fih/fb0/init.qcom.usb.rc:root/init.fb0.usb.rc \
     device/fih/fb0/ueventd.fb0.rc:root/ueventd.fb0.rc
 
 # init.d task management
@@ -243,7 +243,7 @@ PRODUCT_COPY_FILES += \
 
 # Sensors
 PRODUCT_COPY_FILES += \
-    device/fih/fb0/files/lib/hw/sensors.qcom.so:/system/lib/hw/sensors.qcom.so
+    device/fih/fb0/files/lib/hw/sensors.fb0.so:/system/lib/hw/sensors.fb0.so
 
 # GPS
 PRODUCT_COPY_FILES += \
