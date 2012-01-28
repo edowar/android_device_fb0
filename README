@@ -2,18 +2,21 @@ This is a WIP. Currently builds, flashes and boots. Most, but not all, things ar
 
 Here's what is currently working:
 
-- RIL/3G  
-- Sound Partially
-- Touchscreen w/ multitouch
-- 3D Graphics/EGL
+- RIL/3G credit edowar
+- Sound credit edowar
+- Touchscreen w/ multitouch credit tjstyle
+- 3D Graphics/EGL credit edowar
 - Bluetooth
 - Orientation/screen rotate
 - LED/keyboard lights
-- Proximity sensor
-- Ambient light sensor 
+- Proximity sensor credit tickerguy
+- Ambient light sensor credit tickerguy
+- USB mounting credit cyanogenmod teams
+- Wired headset credit edowar
+- GPS credit tickerguy
 
 What doesn't work:
-- wifi
-- GPS
-- USB mounting
-- wired headset
+- wifi (it seems like qcom wcn1312 wireless, driver is close source :( )
+- Camera
+
+
