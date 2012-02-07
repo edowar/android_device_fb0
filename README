@@ -14,9 +14,9 @@ Here's what is currently working:
 - USB mounting credit cyanogenmod teams
 - Wired headset credit edowar
 - GPS credit tickerguy
+- wifi credit to yumbrad and edowar
 
 What doesn't work:
-- wifi (it seems like qcom wcn1312 wireless, driver is close source :( )
 - Camera
 
 
