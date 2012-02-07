@@ -125,7 +125,6 @@ PRODUCT_COPY_FILES += \
 # init scripts
 #PRODUCT_COPY_FILES += \
    device/fih/fb0/files/etc/init.qcom.bt.sh:/system/etc/init.qcom.bt.sh \
-   device/fih/fb0/files/etc/init.qcom.coex.sh:/system/etc/init.qcom.coex.sh \
    device/fih/fb0/files/etc/init.qcom.fm.sh:/system/etc/init.qcom.fm.sh \
    device/fih/fb0/files/etc/init.qcom.sdio.sf6.sh:/system/etc/init.qcom.sdio.sf6.sh \
    device/fih/fb0/files/etc/init.qcom.sdio.sh:/system/etc/init.qcom.sdio.sh \
@@ -222,7 +221,6 @@ PRODUCT_COPY_FILES += \
     device/fih/fb0/files/bin/rmt_storage:/system/bin/rmt_storage \
     device/fih/fb0/files/bin/port-bridge:/system/bin/port-bridge \
     device/fih/fb0/files/bin/wpdiagd:/system/bin/wpdiagd \
-    device/fih/fb0/files/bin/btwlancoex:/system/bin/btwlancoex \
     device/fih/fb0/files/lib/libgemini.so:/system/lib/libgemini.so
 
 # egl

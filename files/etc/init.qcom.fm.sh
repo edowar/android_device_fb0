@@ -1,5 +1,5 @@
 #!/system/bin/sh
-# Copyright (c) 2009, Code Aurora Forum. All rights reserved.
+# Copyright (c) 2009-2010, Code Aurora Forum. All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted provided that the following conditions are met:
@@ -26,12 +26,11 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-setprop hw.fm.init 0
-
-wcmenable=`getprop hw.fm.wcm`
-
-LOG_TAG="qcom-fm"
+BLUETOOTH_SLEEP_PATH=/proc/bluetooth/sleep/proto
+LOG_TAG="qcom-bluetooth"
 LOG_NAME="${0}:"
+
+hciattach_pid=""
 
 loge ()
 {
@@ -49,43 +48,60 @@ failed ()
   exit $2
 }
 
-logi "In FM shell Script"
-logi "wcmenable: $wcmenable"
+start_hciattach ()
+{
+  /system/bin/hciattach -n $BTS_DEVICE $BTS_TYPE $BTS_BAUD &
+  hciattach_pid=$!
+  logi "start_hciattach: pid = $hciattach_pid"
+  echo 1 > $BLUETOOTH_SLEEP_PATH
+}
 
-case $wcmenable in
-  "enable")
-     /system/bin/fm_qsoc_patches 1
-     ;;
-  "disable")
-     /system/bin/fm_qsoc_patches 0
-     ;;
-   *)
-    logi "Shell: Default case"
-    /system/bin/fm_qsoc_patches 1
-    ;;
+kill_hciattach ()
+{
+  echo 0 > $BLUETOOTH_SLEEP_PATH
+  logi "kill_hciattach: pid = $hciattach_pid"
+  ## careful not to kill zero or null!
+  kill -TERM $hciattach_pid
+  # this shell doesn't exit now -- wait returns for normal exit
+}
+
+# mimic hciattach options parsing -- maybe a waste of effort
+USAGE="hciattach [-n] [-p] [-b] [-t timeout] [-s initial_speed] <tty> <type | id> [speed] [flow|noflow] [bdaddr]"
+
+while getopts "blnpt:s:" f
+do
+  case $f in
+  b | l | n | p)  opt_flags="$opt_flags -$f" ;;
+  t)      timeout=$OPTARG;;
+  s)      initial_speed=$OPTARG;;
+  \?)     echo $USAGE; exit 1;;
+  esac
+done
+shift $(($OPTIND-1))
+
+# Note that "hci_qcomm_init -e" prints expressions to set the shell variables
+# BTS_DEVICE, BTS_TYPE, BTS_BAUD, and BTS_ADDRESS.
+
+BA=`ls /data/misc/bluetoothd|head -n 1`
+if [ "$BA" = "" ]
+then
+eval $(/system/bin/hci_qcomm_init -g 1 -e && echo "exit_code_hci_qcomm_init=0" || echo "exit_code_hci_qcomm_init=1")
+else 
+eval $(/system/bin/hci_qcomm_init -b $BA -g 1 -e && echo "exit_code_hci_qcomm_init=0" || echo "exit_code_hci_qcomm_init=1")
+fi
+
+case $exit_code_hci_qcomm_init in
+  0) logi "Bluetooth QSoC firmware download succeeded, $BTS_DEVICE $BTS_TYPE $BTS_BAUD $BTS_ADDRESS";;
+  *) failed "Bluetooth QSoC firmware download failed" $exit_code_hci_qcomm_init;;
 esac
 
-exit_code_fm_qsoc_patches=$?
+# init does SIGTERM on ctl.stop for service
+trap "kill_hciattach" TERM INT
 
-case $exit_code_fm_qsoc_patches in
-   0)
-	logi "FM QSoC calibration and firmware download succeeded"
-	case $wcmenable in
-	"enable")
-		setprop hw.fm.wcm disable
-	;;
-	"disable")
-		setprop hw.fm.wcm enable
-	;;
-	*)
-		setprop hw.fm.wcm disable
-	;;
-	esac
-   ;;
-  *)
-	failed "FM QSoC firmware download and/or calibration failed" $exit_code_fm_qsoc_patches
-esac
+start_hciattach
 
-setprop hw.fm.init 1
+wait $hciattach_pid
+
+logi "Bluetooth stopped"
 
 exit 0
