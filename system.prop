@@ -1,3 +1,11 @@
+# This defines the max event window manager can
+# handle in 1 s. We may adjust this # for performance
+# reason later
+windowsmgr.max_events_per_sec=275
+ro.config.disable_hw_accel=false
+ro.config.soundlock=true
+
+# end build properties
 #
 # system.prop for fb0
 #
@@ -15,11 +23,38 @@ persist.rild.nitz_short_ons_3=
 # DEVICE_PROVISIONED=1
 debug.sf.hw=1
 ro.dev.dmm=1
-
 service.config.gsensor_cal=1
 libcamera.orientation=0
 libcamera.testmode.colorbar=0
 
+#For USB mount
+persist.sys.usb.config=mass_storage,adb
+persist.service.adb.enable=1
 
+# Device Display
+debug.fb.rgb565=0
 
+# Qualcomm Display
+debug.sf.hw=1
+debug.composition.type=dyn
+ro.sf.compbypass.enable=1
+com.qc.hardware=true
+debug.enabletr=false
+com.qc.hdmi_out=false
 
+# This is a high density device with more memory, so larger vm heaps for it.
+dalvik.vm.heapsize=64m
+dalvik.vm.heapgrowthlimit=32m
+
+wifi.interface=wlan0 
+wifi.supplicant_scan_interval=90
+ 
+ro.telephony.gsm.ecclist=110,112,119,911
+ro.telephony.cdma.ecclist=110,112,119,911
+ro.telephony.ecclist=08,000,110,112,118,119,911,999
+ro.telephony.num.auto.hyphen=true
+ro.telephony.gsm.spn.shortname=true
+ro.telephony.call_ring.delay=1000
+wifi.wapi=0
+
+ro.tethering.kb_disconnect=1
