@@ -88,7 +88,7 @@ on boot
     chmod 0666 /dev/ttyHS0
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0666 /sys/devices/platform/msm_serial_hs.0/clock
-    chmod 4755 /system/bin/btwlancoex
+    # chmod 4755 /system/bin/btwlancoex
 
     chmod 0666 /sys/class/rfkill/rfkill1/state
     
@@ -187,12 +187,12 @@ on boot
 on property:init.svc.wpa_supplicant=stopped
     stop dhcpcd
 
-on property:init.svc.bluetoothd=running
-    write /sys/devices/virtual/bluetooth/hci0/idle_timeout 7000
-    start btwlancoex
+#on property:init.svc.bluetoothd=running
+#    write /sys/devices/virtual/bluetooth/hci0/idle_timeout 7000
+#   start btwlancoex
 
-on property:init.svc.bluetoothd=stopped
-    stop btwlancoex
+#on property:init.svc.bluetoothd=stopped
+#    stop btwlancoex
 
 service hciattach /system/bin/sh /system/etc/init.qcom.bt.sh
     class main
@@ -213,11 +213,11 @@ service gpsone_daemon /system/bin/gpsone_daemon
     group qcom_oncrpc
     disabled
 
-service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
-    user shell
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
+# service btwlancoex /system/bin/sh /system/etc/init.qcom.coex.sh
+#    user shell
+#    group bluetooth net_bt_admin
+#    disabled
+#    oneshot
 
 service rmt_storage /system/bin/rmt_storage /dev/block/mmcblk0p14 /dev/block/mmcblk0p15
     user root
