@@ -3,8 +3,9 @@ This is a WIP. Currently builds, flashes and boots. Most, but not all, things ar
 Here's what is currently working:
 
 - RIL/3G credit yumbrad
-- Sound 
+- Sound and Recording
 - Touchscreen w/ multitouch credit tjstyle
+- Touchscreen w/ multitouch others FB0 devices credit to wyhzor
 - 3D Graphics/EGL 
 - Bluetooth
 - Orientation/screen rotate
@@ -14,7 +15,8 @@ Here's what is currently working:
 - USB mounting credit cyanogenmod teams
 - Wired headset credit edowar
 - GPS credit tickerguy
-- wifi credit to yumbrad and edowar
+- wifi credit to yumbrad 
+- wifi tethering credit to mantera
 
 What doesn't work:
 - Camera

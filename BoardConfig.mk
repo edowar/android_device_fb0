@@ -24,8 +24,8 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
-#TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-#TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 TARGET_USES_2G_VM_SPLIT := true
 
@@ -51,13 +51,14 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_USES_GENERIC_AUDIO := false
 
 # Graphics
+BOARD_USES_ADRENO_200 := true
 USE_OPENGL_RENDERER := true
-TARGET_USES_C2D_COMPOSITION := false
+TARGET_FORCE_CPU_UPLOAD := true
+TARGET_USES_C2D_COMPOSITION := true
 TARGET_QCOM_HDMI_OUT := false
 TARGET_USES_OVERLAY := false
-TARGET_HAVE_BYPASS := false
 TARGET_USES_GENLOCK := true
-TARGET_FORCE_CPU_UPLOAD := true
+TARGET_USES_SF_BYPASS := false
 TARGET_GRALLOC_USES_ASHMEM := true
 COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=60 -DQCOM_HARDWARE
 BOARD_EGL_CFG := device/fih/fb0/egl.cfg
@@ -68,16 +69,17 @@ WPA_SUPPLICANT_VERSION := VER_0_6_X
 BOARD_WLAN_DEVICE := libra
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/libra.ko"
 WIFI_DRIVER_MODULE_NAME := "libra"
-WIFI_SDIO_IF_DRIVER_MODULE_PATH := "/system/lib/modules/librasdioif.ko"
-WIFI_SDIO_IF_DRIVER_MODULE_NAME := "librasdioif"
+WIFI_EXT_MODULE_PATH := "/system/lib/modules/librasdioif.ko"
+WIFI_EXT_MODULE_NAME := "librasdioif"
+WIFI_PRE_LOADER := "qcom_sdio_init"
+WIFI_POST_UNLOADER := "qcom_sdio_deinit"
 BOARD_WEXT_NO_COMBO_SCAN := true
-
-
-# Older Touchscreen Support
-#BOARD_USE_LEGACY_TOUCHSCREEN := true
 
 # Camera
 #TARGET_LEGACY_CAMERA := true
+#BOARD_USE_CAF_LIBCAMERA := true
+#USE_CAMERA_STUB := false
+TARGET_LEGACY_CAMERA := true
 
 # GPS Defines
 BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := fb0
