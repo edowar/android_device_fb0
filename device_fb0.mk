@@ -36,6 +36,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     copybit.msm7x30 \
     gralloc.msm7x30 \
+    hwcomposer.msm7x30 \
+    libgenlock \
+    libmemalloc \
+    liboverlay \
+    libQcomUI \
+    libtilerenderer
     
 # Omx
 PRODUCT_PACKAGES += \
@@ -232,9 +238,7 @@ PRODUCT_COPY_FILES += \
     device/fih/fb0/files/lib/libgsl.so:/system/lib/libgsl.so \
     device/fih/fb0/files/lib/libsc-a2xx.so:/system/lib/libsc-a2xx.so \
     device/fih/fb0/files/lib/libC2D2.so:/system/lib/libC2D2.so \
-    device/fih/fb0/files/lib/libOpenVG.so:/system/lib/libOpenVG.so \
-    device/fih/fb0/prebuilt/hwcomposer.msm7x30.so:system/lib/hw/hwcomposer.msm7x30.so \
-    device/fih/fb0/prebuilt/hwcomposer.msm7x30.so:obj/lib/hw/hwcomposer.msm7x30.so
+    device/fih/fb0/files/lib/libOpenVG.so:/system/lib/libOpenVG.so 
 
 # idc
 PRODUCT_COPY_FILES += \
