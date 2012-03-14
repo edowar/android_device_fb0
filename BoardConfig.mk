@@ -27,8 +27,6 @@ ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
-TARGET_USES_2G_VM_SPLIT := true
-
 # Set insecure for root access
 ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
 
