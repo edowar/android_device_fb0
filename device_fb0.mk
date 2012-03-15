@@ -225,7 +225,6 @@ PRODUCT_COPY_FILES += \
     device/fih/fb0/files/bin/netmgrd:/system/bin/netmgrd \
     device/fih/fb0/files/bin/rmt_storage:/system/bin/rmt_storage \
     device/fih/fb0/files/bin/port-bridge:/system/bin/port-bridge \
-    device/fih/fb0/files/bin/wpdiagd:/system/bin/wpdiagd \
     device/fih/fb0/files/lib/libgemini.so:/system/lib/libgemini.so
 
 # egl
@@ -263,6 +262,7 @@ PRODUCT_COPY_FILES += \
     device/fih/fb0/files/lib/libdiag.so:/system/lib/libdiag.so \
     device/fih/fb0/files/lib/liboncrpc.so:/system/lib/liboncrpc.so \
     device/fih/fb0/files/lib/libqmi.so:/system/lib/libqmi.so \
+    device/fih/fb0/files/lib/libqmiservices.so:/system/lib/libqmiservices.so \
     device/fih/fb0/files/lib/libdsm.so:/system/lib/libdsm.so \
     device/fih/fb0/files/lib/libqueue.so:/system/lib/libqueue.so \
     device/fih/fb0/files/lib/libdll.so:/system/lib/libdll.so \
@@ -276,7 +276,6 @@ PRODUCT_COPY_FILES += \
     device/fih/fb0/files/lib/libpbmlib.so:/system/lib/libpbmlib.so \
     device/fih/fb0/files/lib/libauth.so:/system/lib/libauth.so \
     device/fih/fb0/files/lib/libqdp.so:/system/lib/libqdp.so \
-    device/fih/fb0/files/lib/libidl.so:/system/lib/libidl.so \
     device/fih/fb0/files/lib/libdsutils.so:/system/lib/libdsutils.so \
     device/fih/fb0/files/lib/liboem_rapi.so:/system/lib/liboem_rapi.so \
     device/fih/fb0/files/lib/libdsi_netctrl.so:/system/lib/libdsi_netctrl.so \

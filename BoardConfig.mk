@@ -62,8 +62,9 @@ COMMON_GLOBAL_CFLAGS += -DREFRESH_RATE=60 -DQCOM_HARDWARE
 BOARD_EGL_CFG := device/fih/fb0/egl.cfg
 
 # Wifi
+WPA_SUPPLICANT_VERSION := VER_0_8_X
 BOARD_WPA_SUPPLICANT_DRIVER := WEXT
-WPA_SUPPLICANT_VERSION := VER_0_6_X
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_wext
 BOARD_WLAN_DEVICE := libra
 WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/libra.ko"
 WIFI_DRIVER_MODULE_NAME := "libra"
@@ -71,7 +72,6 @@ WIFI_EXT_MODULE_PATH := "/system/lib/modules/librasdioif.ko"
 WIFI_EXT_MODULE_NAME := "librasdioif"
 WIFI_PRE_LOADER := "qcom_sdio_init"
 WIFI_POST_UNLOADER := "qcom_sdio_deinit"
-BOARD_WEXT_NO_COMBO_SCAN := true
 
 # Camera
 #TARGET_LEGACY_CAMERA := true

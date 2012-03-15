@@ -1,8 +1,87 @@
-/dev/system_bus_freq    0660    system      system
-/dev/cpu_dma_latency    0660    system      system
-/dev/rfkill             0640    root        root
+/dev/null                 0666   root       root
+/dev/zero                 0666   root       root
+/dev/full                 0666   root       root
+/dev/ptmx                 0666   root       root
+/dev/tty                  0666   root       root
+/dev/random               0666   root       root
+/dev/urandom              0666   root       root
+/dev/ashmem               0666   root       root
+/dev/binder               0666   root       root
 
-# radio
+# logger should be world writable (for logging) but not readable
+/dev/log/*                0662   root       log
+
+# the msm hw3d client device node is world writable/readable.
+/dev/msm_hw3dc            0666   root       root
+
+# the DIAG device node is world writable/readable.
+/dev/diag                 0666   root       root
+
+# gpu driver for adreno200 is globally accessible
+/dev/kgsl                 0666   root       root
+
+# these should not be world writable
+/dev/diag_arm9            0660   radio      radio
+/dev/android_adb          0660   adb        adb
+/dev/android_adb_enable   0660   adb        adb
+/dev/ttyMSM0              0600   bluetooth  bluetooth
+/dev/ttyHS0               0600   bluetooth  bluetooth
+/dev/uinput               0660   system     bluetooth
+/dev/alarm                0664   system     radio
+/dev/tty0                 0660   root       system
+/dev/graphics/*           0660   system     graphics
+/dev/msm_hw3dm            0660   system     graphics
+/dev/msm_rotator          0660   system     graphics
+/dev/input/*              0660   root       input
+/dev/eac                  0660   root       audio
+/dev/cam                  0660   root       camera
+/dev/pmem                 0660   system     graphics
+/dev/pmem_audio           0660   system     audio
+/dev/pmem_adsp*           0660   system     audio
+/dev/pmem_smipool*        0660   system     camera
+/dev/pmem_camera*         0660   system     camera
+#div6-d1-JL-FixGpsRpc{
+#/dev/oncrpc/*             0660   root       qcom_oncrpc
+/dev/oncrpc/*             0666   root       system
+#div6-d1-JL-FixGpsRpc}
+/dev/adsp/*               0660   system     audio
+/dev/snd/*                0660   system     audio
+/dev/mt9t013              0660   system     system
+/dev/msm_camera/*         0660   system     system
+/dev/akm8976_daemon       0640   compass    system
+/dev/akm8976_aot          0640   compass    system
+/dev/akm8973_daemon       0640   compass    system
+/dev/akm8973_aot          0640   compass    system
+/dev/bma150               0640   compass    system
+/dev/cm3602               0640   compass    system
+/dev/akm8976_pffd         0640   compass    system
+/dev/lightsensor          0640   system     system
+/dev/radio0               0644   fm_radio   fm_radio
+/dev/i2c-2                0664   root       system
+/dev/i2c-4                0664   root       system
+/dev/msm_pcm_out*         0660   system     audio
+/dev/msm_pcm_in*          0660   system     audio
+/dev/msm_voicememo        0660   system     audio
+/dev/msm_pcm_ctl*         0660   system     audio
+/dev/msm_snd*             0660   system     audio
+/dev/msm_mp3*             0660   system     audio
+/dev/audience_a1026*      0660   system     audio
+/dev/tpa2018d1*           0660   system     audio
+/dev/msm_audpre           0660   system     audio
+/dev/msm_audio_ctl        0660   system     audio
+/dev/htc-acoustic         0660   system     audio
+/dev/vdec                 0660   system     audio
+/dev/qce                  0660   system     audio
+/dev/q6venc               0660   system     audio
+/dev/snd/dsp              0660   system     audio
+/dev/snd/dsp1             0660   system     audio
+/dev/snd/mixer            0660   system     audio
+/dev/msm_pcm_lp_dec       0660   system     audio
+# port-bridge permission change
+/dev/smd0                 0640   system     system
+/dev/ttyGS0               0660   system     system
+# port-bridge permission change
+# FIH+: change qmuxd permission, Susan Chiu
 /dev/smd7                 0640   radio      radio
 /dev/smdcntl0             0640   radio      radio
 /dev/smdcntl1             0640   radio      radio
@@ -20,98 +99,43 @@
 /dev/sdioctl5             0640   radio      radio
 /dev/sdioctl6             0640   radio      radio
 /dev/sdioctl7             0640   radio      radio
+# FIH-: End
+/dev/qemu_trace           0666   system     system
 /dev/qmi                  0640   radio      radio
 /dev/qmi0                 0640   radio      radio
 /dev/qmi1                 0640   radio      radio
 /dev/qmi2                 0640   radio      radio
+/dev/bus/usb/*            0660   root       usb
+/dev/usb_accessory        0660   root       usb
+/dev/gemini0              0660   system     system
 
-# Radio
-/dev/radio0		  0644	system	system
+# CDMA radio interface MUX
+/dev/ts0710mux*           0640   radio      radio
+/dev/ppp                  0660   radio      vpn
+/dev/tun                  0640   vpn        vpn
 
-# Permissions for ril
-/dev/radio		  	0660	radio	system
-/dev/oncrpc/00000000:0		0660	radio	system
-/dev/oncrpc/30000000:001d0000	0660	radio	system
-/dev/oncrpc/30000003:00030000	0660	radio	system
-/dev/oncrpc/3000000e:00090000	0660	radio	system
-/dev/oncrpc/3000000f:00030000	0660	radio	system
-/dev/oncrpc/30000012:00040000	0660	radio	system
-/dev/oncrpc/30000014:00030000	0660	radio	system
-/dev/oncrpc/30000015:00010000	0660	radio	system
-/dev/oncrpc/30000015:731f0000	0660	radio	system
-/dev/oncrpc/30000016:00040000	0660	radio	system
-/dev/oncrpc/30000017:00010000	0660	radio	system
-/dev/oncrpc/30000019:00090000	0660	radio	system
-/dev/oncrpc/3000001a:00020000	0660	radio	system
-/dev/oncrpc/3000001b:00040000	0660	radio	system
-/dev/oncrpc/3000001d:00010000	0660	radio	system
-/dev/oncrpc/30000020:00010000	0660	radio	system
-/dev/oncrpc/30000024:00010000	0660	radio	system
-/dev/oncrpc/3000003c:00090000	0660	radio	system
-/dev/oncrpc/30000048:00040000	0660	radio	system
-/dev/oncrpc/3000005b:000b0000	0660	radio	system
-/dev/oncrpc/3000005d:00000000	0660	radio	system
-/dev/oncrpc/3000005d:00010000	0660	radio	system
-/dev/oncrpc/3000005d:9202a8e4	0660	radio	system
-/dev/oncrpc/3000005f:00020000	0660	radio	system
-/dev/oncrpc/30000060:00050000	0660	radio	system
-/dev/oncrpc/30000061:00030000	0660	radio	system
-/dev/oncrpc/30000064:00010000	0660	radio	system
-/dev/oncrpc/3000006b:00010000	0660	radio	system
-/dev/oncrpc/30000081:00010000	0660	radio	system
-/dev/oncrpc/30000082:00010000	0660	radio	system
-/dev/oncrpc/30000089:00050000	0660	radio	system
-/dev/oncrpc/3000008c:00050000	0660	radio	system
-/dev/oncrpc/30000091:00030000	0660	radio	system
-/dev/oncrpc/3000009f:00010000	0660	radio	system
-/dev/oncrpc/300000a1:00040000	0660	radio	system
-/dev/oncrpc/300000a3:00020000	0660	radio	system
-/dev/oncrpc/300000a4:00010000	0660	radio	system
-/dev/oncrpc/300000a7:00010000	0660	radio	system
-/dev/oncrpc/300000ab:00010000	0660	radio	system
-/dev/oncrpc/3000fe00:a82d4624	0660	radio	system
-/dev/oncrpc/3000fffd:00000000	0660	radio	system
-
-#camera
-/dev/msm_camera/*       0660    system      system
-
-#sensors
-/dev/yas529		0777    root	    system
-/dev/ltr502als_alsps    0777    compass     system
-/dev/bi041p		0777	root	    root
-/dev/i2c-2		0777    root	    system
-/dev/gps_sync		0777	root        root
-
-#video
+# sysfs properties
+/sys/devices/virtual/input/input*   enable      0660  root   input
+/sys/devices/virtual/input/input*   poll_delay  0660  root   input
+/sys/devices/virtual/usb_composite/*   enable      0664  root   system
+#permissions for video
 /dev/msm_vidc_reg         0660  system       audio
 /dev/msm_vidc_dec         0660  system       audio
 /dev/msm_vidc_enc         0660  system       audio
-
-#audio
+#permissions for audio
 /dev/msm_amrnb            0660  system       audio
 /dev/msm_amrwb            0660  system       audio
 /dev/msm_aac              0660  system       audio
+/dev/msm_aac_in           0660  system       audio
 /dev/msm_qcelp            0660  system       audio
 /dev/msm_evrc             0660  system       audio
 /dev/msm_fm               0660  system       audio
 /dev/msm_acdb             0660  system       audio
+/dev/msm_rtac             0660  system       audio
 /dev/msm_wma              0660  system       audio
 /dev/msm_wmapro           0660  system       audio
 /dev/msm_qcelp_in         0660  system       audio
 /dev/msm_evrc_in          0660  system       audio
 /dev/msm_preproc_ctl      0660  system       audio
 /dev/msm_a2dp_in          0640  system       audio
-/dev/msm_audio_dev_ctrl 0660    system      audio
-/dev/msm_acdb           0660    system      audio
-/dev/msm_pcm_lp_dec     0660    system      audio
-/dev/pmem_audio         0660    system      audio
-/dev/pmem_adsp*         0660    system      audio
-/dev/adsp/*             0660    system      audio
-/dev/snd/*              0660    system      audio
-/dev/msm_pcm_out*       0660    system      audio
-/dev/msm_pcm_in*        0660    system      audio
-/dev/msm_mp3*           0660    system      audio
-/dev/gemini0	        0660    system      system
-
-#graphics
-/dev/msm_rotator        0660    system      graphics
+/dev/msm_amrnb_in         0640  system       audio
