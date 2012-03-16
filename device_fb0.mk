@@ -305,6 +305,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.ril.gprsclass=10 \
     ro.telephony.default_network=0 \
     ro.telephony.call_ring.multiple=false \
+    ro.telephony.ril_class=LGEQualcommRIL \
     ro.telephony.ril.v3=icccardstatus,skipbrokendatacall,datacall,signalstrength,facilitylock \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=90 \
